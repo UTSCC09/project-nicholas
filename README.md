@@ -4,8 +4,8 @@
 
 ## Team Members
 
-Lim Lei  
-Jason Xia
+ - Lim Lei  
+ - Jason Xia
 
 ## Description of the web application
 
@@ -20,14 +20,18 @@ Intuitive, user-friendly and efficient platform designed for fashion enthusiasts
 ## Description of the additional features that will be complete by the Final version
 
 **Search and Filter:** Buyers can easily search for items they are looking for, or filter items based on their preferences.  
+
 **Analytics Dashboard:** Sellers will be able to analyze their sales, views, ratings, and other metrics.  
+
 **Rating and Reviews:** Buyers that have bought products from a seller will be able to rate them and leave comments on their items/profile about their interactions.
 
 ## Description of the technology stack that you will use to build and deploy it
 
 **Frontend:** ReactJS will be used as our frontend to build the user interfaces. Bootstrap for styling.  
+
 **Backend:** NodeJS and ExpressJS will be used to create a scalable, secure and efficient backend. Atlas search for search queries.  
-**Database:** MongoDB will be our database system, used to store users, products, and transactions.
+
+**Database:** MongoDB will be our database system, used to store users, products, and transactions.  
 
 ## Description of the top 5 technical challenges
 
