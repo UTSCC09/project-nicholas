@@ -1,11 +1,9 @@
-# Project Title
-
-***SoleSync***
+# SoleSync
 
 ## Team Members
 
- - Lim Lei  
- - Jason Xia
+- Lim Lei  
+- Jason Xia
 
 ## Description of the web application
 
@@ -13,17 +11,17 @@ Intuitive, user-friendly and efficient platform designed for fashion enthusiasts
 
 ## Description of the key features that will be completed by the Beta version
 
-- User Authentication: Secure sign-up and login features with password recovery capabilities.
-- Product Posting: Sellers are able to post their items to the marketplace with pictures, descriptions, price, and size.
-- Shopping Cart: Buyers are able to select the items they want and add them into their shopping cart to be able to proceed to checkout.
+- **User Authentication:** Secure sign-up and login features with password recovery capabilities.
+- **Product Posting:** Sellers are able to post their items to the marketplace with pictures, descriptions, price, and size.
+- **Shopping Cart:** Buyers are able to select the items they want and add them into their shopping cart to be able to proceed to checkout.
 
 ## Description of the additional features that will be complete by the Final version
 
-**Search and Filter:** Buyers can easily search for items they are looking for, or filter items based on their preferences.  
+- **Search and Filter:** Buyers can easily search for items they are looking for, or filter items based on their preferences.  
 
-**Analytics Dashboard:** Sellers will be able to analyze their sales, views, ratings, and other metrics.  
+- **Analytics Dashboard:** Sellers will be able to analyze their sales, views, ratings, and other metrics.  
 
-**Rating and Reviews:** Buyers that have bought products from a seller will be able to rate them and leave comments on their items/profile about their interactions.
+- **Rating and Reviews:** Buyers that have bought products from a seller will be able to rate them and leave comments on their items/profile about their interactions.
 
 ## Description of the technology stack that you will use to build and deploy it
 
