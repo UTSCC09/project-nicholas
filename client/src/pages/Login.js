@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
-function Signup() {
+function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -10,17 +10,31 @@ function Signup() {
     async function submit(e) {
         e.preventDefault();
         try{
-            await axios.post("")
+            await fetch("http://localhost/3001/api/users/login", {
+                method: "POST",
+                body: JSON.stringify({email, password}),
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            })
+            .then(res => res.json())
+            .then((res) => {
+                if(res._id == null){
+                    //Alert error
+                } else {
+                    
+                }
+            })
         } catch {
 
         }
     }
 
     return (
-        <div className="signup">
-            <h1>Signup</h1>
+        <div className="login">
+            <h1>Login</h1>
 
-            <form action="POST">
+            <form>
                 <input type="email" onChange={(e)=>{setEmail(e.target.value)}} placeholder="Email" name="" id="" />
                 <input type="password" onChange={(e)=>{setPassword(e.target.value)}} placeholder="Password" name="" id="" />
 
@@ -31,7 +45,7 @@ function Signup() {
             <p>OR</p>
             <br />
 
-            <Link to="/login">Login Page</Link>
+            <Link to="/signup">Signup</Link>
         </div>
     );
 };

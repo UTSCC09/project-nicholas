@@ -2,7 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
-const userRoute = require("./routes/User");
+const PORT = 3001;
+
+const userRoute = require("./routes/userRoute");
 
 const app = express();
 
@@ -23,6 +25,6 @@ connect();
 
 app.use("/api/users", userRoute);
 
-app.listen(3001, () => {
-    console.log("Server started on port 3001")
+app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
 })
