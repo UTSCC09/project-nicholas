@@ -33,24 +33,22 @@ router.post("/register", async (req, res) => {
     }
 });
 
-router.post("/login", (req, res) => {
+router.post("/login", async (req, res) => {
     const { email, password } = req.body;
-    User.findOne({ email: email }, (err, user) => {
-        if (err) return res.status(500).end(err);
-        if (!user) return res.status(401).end("Access Denied");
-        compare(password, user.password, (err, valid) => {
-            if (err) return res.status(500).end(err);
-            if (!valid) return res.status(401).end("Access Denied");
-            res.setHeader(
-                "Set-Cookie",
-                serialize("username", user._id, {
-                  path: "/",
-                  maxAge: 60 * 60 * 24 * 7, // 1 week in number of seconds
-                }),
-            );
-            res.status(201).json(user);
-        })
-    })
+    const user = await User.findOne({ email: email });
+
+    if (user && compare(password, user.password)){
+        res.setHeader(
+            "Set-Cookie",
+            serialize("username", user._id, {
+              path: "/",
+              maxAge: 60 * 60 * 24 * 7, // 1 week in number of seconds
+            }),
+        );
+        res.status(201).json(user);
+    } else {
+        return res.status(401).end("Access Denied");
+    }
 });
 
 router.get("/logout", (req, res) => {

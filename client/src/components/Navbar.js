@@ -1,5 +1,7 @@
 import { useNavigate, Link } from "react-router-dom";
 
+import "../css/Navbar.css";
+
 function Navbar() {
     let navigate = useNavigate();
 
@@ -10,13 +12,11 @@ function Navbar() {
     return(
         <nav>
             <h1 onClick={handleClick}>Project Nicholas</h1>
-            <div className="links">
-                <Link to="/contactus">Contact Us</Link>
-                <Link to="/login">Login</Link>
-                <Link to="/signup">Signup</Link>
-            </div>
-            
-
+            <ul className="links">
+                <li><Link to="/contactus" className="linkitems">Contact Us</Link></li>
+                <li><Link to="/login" className="linkitems">Login</Link></li>
+            </ul>
+            <Link to="/signup"><button>Sign Up</button></Link>
         </nav>
     );
 }

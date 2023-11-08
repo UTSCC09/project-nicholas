@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
+import "../css/Login.css";
+
 function Login() {
 
     const [email, setEmail] = useState("");
@@ -10,7 +12,7 @@ function Login() {
     async function submit(e) {
         e.preventDefault();
         try{
-            await fetch("http://localhost/3001/api/users/login", {
+            await fetch(`${process.env.REACT_APP_PUBLIC_BACKEND}/api/users/login`, {
                 method: "POST",
                 body: JSON.stringify({email, password}),
                 headers: {
@@ -22,7 +24,8 @@ function Login() {
                 if(res._id == null){
                     //Alert error
                 } else {
-                    
+                    setEmail("");
+                    setPassword("");
                 }
             })
         } catch {
@@ -35,17 +38,19 @@ function Login() {
             <h1>Login</h1>
 
             <form>
-                <input type="email" onChange={(e)=>{setEmail(e.target.value)}} placeholder="Email" name="" id="" />
-                <input type="password" onChange={(e)=>{setPassword(e.target.value)}} placeholder="Password" name="" id="" />
-
+                <div className="txt_field">
+                    <input type="email" onChange={(e)=>{setEmail(e.target.value)}} placeholder="Email" required className="userinputs"/>
+                </div>
+                <div className="txt_field">
+                    <input type="password" onChange={(e)=>{setPassword(e.target.value)}} placeholder="Password" required className="userinputs"/>
+                </div>
+                
                 <input type="submit" onClick={submit} />
             </form>
 
-            <br />
-            <p>OR</p>
-            <br />
-
-            <Link to="/signup">Signup</Link>
+            <div className="signup_link">
+                Not a member? <Link to="/signup" className="link">Signup</Link>
+            </div>
         </div>
     );
 };
