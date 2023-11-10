@@ -3,6 +3,8 @@ import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import NoPage from "./pages/NoPage";
 import ContactUs from "./pages/ContactUs";
+import Sell from "./pages/Sell";
+import Profile from "./pages/Profile";
 
 import Navbar from "./components/Navbar";
 
@@ -20,6 +22,8 @@ function App() {
           <Route path="/signup" element={<Signup />}/>
           <Route path="/login" element={<Login />}/>
           <Route path="/contactus" element={<ContactUs />}/>
+          <Route path="/profile" element={<Profile />}/>
+          <Route path="/sell" element={<Sell/>}/>
           <Route path="*" element={<NoPage />}/>
         </Routes>
       </div>

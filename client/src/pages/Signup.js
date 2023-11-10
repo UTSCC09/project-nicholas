@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import axios from "axios";
+import { toast } from "react-toastify";
 
 import "../css/Signup.css";
 
@@ -10,6 +10,8 @@ function Signup() {
     const [password, setPassword] = useState("");
     const [firstname, setFirstName] = useState("");
     const [lastname, setLastName] = useState("");
+
+    const navigate = useNavigate();
 
     async function submit(e) {
         e.preventDefault();
@@ -28,12 +30,18 @@ function Signup() {
             .then(res => res.json())
             .then((res) => {
                 if(res._id == null){
-                    //Alert error
+                    setFirstName("");
+                    setLastName("");
+                    setEmail("");
+                    setPassword("");
+                    toast.error("Sign Up Failed");
                 } else {
                     setFirstName("");
                     setLastName("");
                     setEmail("");
                     setPassword("");
+                    toast.success("Successfully Signed Up!");
+                    navigate('/', {state: {user: res}});
                 }
             })
         } catch {

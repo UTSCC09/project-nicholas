@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/userModel");
+const jwt = require("jsonwebtoken");
+const dotenv = require("dotenv");
 
 const { compare, genSalt, hash } = require("bcrypt");
 
@@ -38,13 +40,11 @@ router.post("/login", async (req, res) => {
     const user = await User.findOne({ email: email });
 
     if (user && compare(password, user.password)){
-        res.setHeader(
-            "Set-Cookie",
-            serialize("username", user._id, {
-              path: "/",
-              maxAge: 60 * 60 * 24 * 7, // 1 week in number of seconds
-            }),
-        );
+        dotenv.config();
+        const token = jwt.sign(user.toJSON(), process.env.MY_SECRET, { expiresIn: "1d" });
+        res.cookie("token", token, {
+            httpOnly: true
+        });
         res.status(201).json(user);
     } else {
         return res.status(401).end("Access Denied");
