@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
+import useAuth from "../authentication/useAuth"
+
 import "../css/Signup.css";
 
 function Signup() {
@@ -12,6 +14,7 @@ function Signup() {
     const [lastname, setLastName] = useState("");
 
     const navigate = useNavigate();
+    const { setAuth } = useAuth();
 
     async function submit(e) {
         e.preventDefault();
@@ -29,6 +32,7 @@ function Signup() {
             })
             .then(res => res.json())
             .then((res) => {
+                console.log(res);
                 if(res._id == null){
                     setFirstName("");
                     setLastName("");

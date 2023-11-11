@@ -24,6 +24,7 @@ function LoggedInNavbar() {
             console.log(res);
             setAuth({});
             toast.success("Successfully Logged Out");
+            navigate("/");
         })
     }
 
