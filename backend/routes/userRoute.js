@@ -29,7 +29,13 @@ router.post("/register", async (req, res) => {
     });
     try {
         const newUser = await user.save();
-        res.status(201).json(newUser);
+        dotenv.config();
+        const token = jwt.sign(user.toJSON(), process.env.MY_SECRET, { expiresIn: "1d" });
+        res.status(201).json({
+            _id: newUser._id,
+            email: email,
+            token: token
+        });
     } catch (err) {
         res.status(400).json({ message: err.message });
     }
@@ -42,24 +48,28 @@ router.post("/login", async (req, res) => {
     if (user && compare(password, user.password)){
         dotenv.config();
         const token = jwt.sign(user.toJSON(), process.env.MY_SECRET, { expiresIn: "1d" });
-        res.cookie("token", token, {
-            httpOnly: true
+        res.cookie('jwt', token, {httpOnly: true, maxAge: 3*24*60*60*1000})
+        res.status(201).json({
+            _id: user._id,
+            email: user.email,
+            token: token
         });
-        res.status(201).json(user);
     } else {
         return res.status(401).end("Access Denied");
     }
 });
 
 router.get("/logout", (req, res) => {
-    res.setHeader(
-        "Set-Cookie",
-        serialize("username", "", {
-          path: "/",
-          maxAge: 60 * 60 * 24 * 7,
-        }),
-    );
-    res.status(200).json("Successfully Logged Out");
+    try {
+        res.cookie('jwt', 'none', {
+            expires: new Date(Date.now()),
+            httpOnly: true,
+          });
+        res.status(200).json("Successfully Logged Out");
+    } catch (err){
+        res.status(500).json("Failed to Log Out");
+    }
+    
 });
 
 router.delete("/:id", (req, res) => {

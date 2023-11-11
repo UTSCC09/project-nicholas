@@ -2,8 +2,11 @@ import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "../css/Navbar.css";
 
+import useAuth from "../authentication/useAuth";
+
 function LoggedInNavbar() {
     let navigate = useNavigate();
+    const { setAuth } = useAuth();
 
     function handleClick(){
         navigate("/");
@@ -18,7 +21,9 @@ function LoggedInNavbar() {
         })
         .then(res => res.json())
         .then(res => {
-            toast.success(res.msg);
+            console.log(res);
+            setAuth({});
+            toast.success("Successfully Logged Out");
         })
     }
 

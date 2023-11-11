@@ -40,6 +40,11 @@ function Signup() {
                     setLastName("");
                     setEmail("");
                     setPassword("");
+                    const _id = res._id;
+                    const email = res.email;
+                    const role = [1];
+                    const token = res.token;
+                    setAuth({ _id, email, role, token });
                     toast.success("Successfully Signed Up!");
                     navigate('/', {state: {user: res}});
                 }

@@ -7,14 +7,22 @@ import Sell from "./pages/Sell";
 import Profile from "./pages/Profile";
 
 import Navbar from "./components/Navbar";
+import LoggedInNavbar from "./components/LoggedInNavbar";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import useAuth from "./authentication/useAuth";
+
 
 function App() {
+  const auth = useAuth();
   return (
     <Router>
       <div className="App">
-        <Navbar />
+        { Object.keys(auth.auth).length === 0 ? (
+          <Navbar />
+        ) : (
+          <LoggedInNavbar />
+        )}
         
         <Routes>
           <Route index element={<Home />}/>

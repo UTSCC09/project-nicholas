@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import useAuth from '../authentication/useAuth';
 
 import "../css/Login.css";
 
@@ -9,6 +10,8 @@ function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+
+    const { setAuth } = useAuth();
 
     async function submit(e) {
         e.preventDefault();
@@ -22,14 +25,19 @@ function Login() {
             })
             .then(res => res.json())
             .then((res) => {
+                console.log(res);
                 if(res._id == null){
-                    console.log("here");
                     setEmail("");
                     setPassword("");
                     toast.error("Login Failed");
                 } else {
                     setEmail("");
                     setPassword("");
+                    const _id = res._id;
+                    const email = res.email;
+                    const role = [1];
+                    const token = res.token;
+                    setAuth({ _id: _id, email: email, role: role, token: token });
                     toast.success("Successfully Logged In!");
                     navigate('/', {state: {id: res.email}});
                 }
