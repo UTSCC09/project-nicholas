@@ -41,7 +41,7 @@ h1, h3, h4 {
 
 .marketplace_header {
     padding: 20px 50px;
-    border: 0.2rem solid white;
+    border: 2px solid white;
 }
 
 .marketplace_header h1{

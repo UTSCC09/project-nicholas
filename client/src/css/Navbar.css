@@ -19,6 +19,7 @@ nav {
     align-items: center;
     background-color:#24252A;
     margin: 0;
+    border-bottom: 1px solid white;
 }
 
 nav h1 {
