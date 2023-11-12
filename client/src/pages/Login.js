@@ -42,8 +42,9 @@ function Login() {
                     navigate('/', {state: {id: res.email}});
                 }
             })
-        } catch {
-
+        } catch (res){
+            console.log(res.message);
+            toast.error("An unexpected error has occured. Try again");
         }
     }
 

@@ -23,7 +23,9 @@ function Home () {
                     <h1>You are logged in using the email {auth.auth.email}.</h1>
                 )}
             </div>
-
+            <div className="marketplace_header">
+                <h1>Marketplace</h1>
+            </div>
             <div className = "items">
                 <div className = "item">
                     <img src={require("../images/nike-panda-dunks.jpg")} onClick={imageClick}/>
