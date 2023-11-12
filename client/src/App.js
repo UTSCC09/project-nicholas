@@ -5,6 +5,7 @@ import NoPage from "./pages/NoPage";
 import ContactUs from "./pages/ContactUs";
 import Sell from "./pages/Sell";
 import Profile from "./pages/Profile";
+import Item from "./pages/Item";
 
 import Navbar from "./components/Navbar";
 import LoggedInNavbar from "./components/LoggedInNavbar";
@@ -32,6 +33,7 @@ function App() {
           <Route path="/contactus" element={<ContactUs />}/>
           <Route path="/profile" element={<Profile />}/>
           <Route path="/sell" element={<Sell/>}/>
+          <Route path="/item" element={<Item/>}/>
           <Route path="*" element={<NoPage />}/>
         </Routes>
       </div>
