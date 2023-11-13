@@ -34,6 +34,34 @@ function Home () {
                         <h3>CA$150</h3>
                     </div>
                 </div>
+                <div className = "item">
+                    <img src={require("../images/luka-2.jpg")} onClick={imageClick}/>
+                    <div className = "item_information">
+                        <h4>Luka 2 Basketball Shoes</h4>
+                        <h3>CA$180</h3>
+                    </div>
+                </div>
+                <div className = "item">
+                    <img src={require("../images/ja-morant-1.jpg")} onClick={imageClick}/>
+                    <div className = "item_information">
+                        <h4>Ja Morant 1 Basketball Shoes</h4>
+                        <h3>CA$160</h3>
+                    </div>
+                </div>
+                <div className = "item">
+                    <img src={require("../images/air-force-one-supreme.jpg")} onClick={imageClick}/>
+                    <div className = "item_information">
+                        <h4>Air Force One Supreme</h4>
+                        <h3>CA$200</h3>
+                    </div>
+                </div>
+                <div className = "item">
+                    <img src={require("../images/sabrina-1.jpg")} onClick={imageClick}/>
+                    <div className = "item_information">
+                        <h4>Sabrina 1 Basketball Shoes</h4>
+                        <h3>CA$220</h3>
+                    </div>
+                </div>
             </div>
         </div>
     );
