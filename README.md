@@ -5,6 +5,18 @@
 - Lim Lei  
 - Jason Xia
 
+## Installation for your Software
+
+When building the project, please make sure you have npm and Node.js installed in order to use React
+
+#### Initializing the Project
+
+Run `npm install` in client and backend directories to install all dependencies required
+
+#### To run the project
+
+Run `npm run dev` in the backend directory to run the software
+
 ## Description of the web application
 
 Intuitive, user-friendly and efficient platform designed for fashion enthusiasts, allowing them to sell and purchase pre-owned clothing and shoes. Aims to create a community where users can easily find what they are looking for and sell/purchase clothing and shoes for their own wants.
@@ -38,3 +50,4 @@ Intuitive, user-friendly and efficient platform designed for fashion enthusiasts
 - Integrate a secure method for transactions within the platform by adding third-party apis.
 - Implementing users profile, and being able to search up users to see their information and all their listings on the website
 - Real-time updates to the shopping cart, comments, reviews, and prices
+
