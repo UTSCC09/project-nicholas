@@ -1,0 +1,26 @@
+.item_display {
+    padding: 30px 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.item_image {
+    padding: 50px 50px;
+}
+
+.item_image img {
+    width: 500px;
+}
+
+.item_image h1 {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.item_image h2 {
+    font-size: 20px;
+    font-weight: 500;
+}
+

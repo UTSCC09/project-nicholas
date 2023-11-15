@@ -64,10 +64,10 @@ function Signup() {
 
             <form>
                 <div className="txt_field">
-                    <input type="firstname" onChange={(e)=>{setFirstName(e.target.value)}} placeholder="First Name" className="userinputs" />
+                    <input type="text" onChange={(e)=>{setFirstName(e.target.value)}} placeholder="First Name" className="userinputs" />
                 </div>
                 <div className="txt_field">
-                    <input type="lastname" onChange={(e)=>{setLastName(e.target.value)}} placeholder="Last Name" className="userinputs" />
+                    <input type="text" onChange={(e)=>{setLastName(e.target.value)}} placeholder="Last Name" className="userinputs" />
                 </div>
                 <div className="txt_field">
                     <input type="email" onChange={(e)=>{setEmail(e.target.value)}} placeholder="Email" className="userinputs" />
