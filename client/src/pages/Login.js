@@ -29,7 +29,7 @@ function Login() {
                 if(res._id == null){
                     setEmail("");
                     setPassword("");
-                    toast.error("Login Failed");
+                    toast.error("Wrong email or password. Please try again");
                 } else {
                     setEmail("");
                     setPassword("");
@@ -44,7 +44,7 @@ function Login() {
             })
         } catch (res){
             console.log(res.message);
-            toast.error("An unexpected error has occured. Try again");
+            toast.error("Wrong email or password. Please try again");
         }
     }
 
