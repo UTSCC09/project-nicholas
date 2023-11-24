@@ -33,7 +33,7 @@ function App() {
           <Route path="/contactus" element={<ContactUs />}/>
           <Route path="/profile" element={<Profile />}/>
           <Route path="/sell" element={<Sell/>}/>
-          <Route path="/item" element={<Item/>}/>
+          <Route path="/item/:id" element={<Item/>}/>
           <Route path="*" element={<NoPage />}/>
         </Routes>
       </div>
