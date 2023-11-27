@@ -1,15 +1,16 @@
 import "../css/Item.css";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Item(){
 
-    const [image, setImage] = useState();
+    const [item, setItem] = useState({});
     const { id } = useParams();
-    //getImage(id);
-    console.log(id);
+    useEffect(() => {
+        getItem(id);
+    }, []);
 
-    const getImage = async (id) => {
+    const getItem = async (id) => {
         try{
             await fetch(`${process.env.REACT_APP_PUBLIC_BACKEND}/api/items/${id}`, {
                 method: "GET",
@@ -18,7 +19,9 @@ function Item(){
                 }
             }).then(res => res.json())
             .then((res) => {
-                setImage(res);
+                console.log(res[0]);
+                setItem(res[0]);
+                console.log(item);
             })
         } catch (err){
 
