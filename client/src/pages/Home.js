@@ -12,7 +12,6 @@ function Home () {
     const [allImages, setAllImages] = useState();
 
     const imageClick = (id) => {
-        console.log(id);
         navigate('/item/'+id);
     }
 
