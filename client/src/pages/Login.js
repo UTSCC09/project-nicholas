@@ -13,8 +13,19 @@ function Login() {
 
     const { setAuth } = useAuth();
 
+    function validateInput(){
+        if(!email || !password){
+            return false;
+        }
+        return true;
+    }
+
     async function submit(e) {
         e.preventDefault();
+        if(!validateInput()){
+            toast.error("Please enter a valid email and password");
+            return;
+        }
         try{
             await fetch(`${process.env.REACT_APP_PUBLIC_BACKEND}/api/users/login`, {
                 method: "POST",
@@ -54,10 +65,21 @@ function Login() {
 
             <form>
                 <div className="txt_field">
-                    <input type="email" onChange={(e)=>{setEmail(e.target.value)}} placeholder="Email" required className="userinputs"/>
+                    <input 
+                        type="email" 
+                        onChange={(e)=>{setEmail(e.target.value)}} 
+                        placeholder="Email" 
+                        value={email}
+                        required 
+                        className="userinputs"/>
                 </div>
                 <div className="txt_field">
-                    <input type="password" onChange={(e)=>{setPassword(e.target.value)}} placeholder="Password" required className="userinputs"/>
+                    <input type="password" 
+                    onChange={(e)=>{setPassword(e.target.value)}} 
+                    placeholder="Password" 
+                    required 
+                    value={password}
+                    className="userinputs"/>
                 </div>
                 
                 <input type="submit" onClick={submit} />

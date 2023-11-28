@@ -1,6 +1,8 @@
 import "../css/Item.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
+import useAuth from "../authentication/useAuth";
 
 function Item(){
 
@@ -8,6 +10,9 @@ function Item(){
     const [ownerName, setOwnerName] = useState("");
 
     const { id } = useParams();
+    const navigate = useNavigate();
+    const auth = useAuth();
+
     useEffect(() => {
         getItem(id);
     }, []);
@@ -45,6 +50,15 @@ function Item(){
         }
     }
 
+    function buynowclick() {
+        if(Object.keys(auth.auth).length === 0){
+            toast.error("You are currently not logged in. Please login first.");
+            navigate("/login");
+        } else {
+            navigate("/buynow/"+id);
+        }
+    }
+
     return(
         <div className="item_display">
             <div className="item_image">
@@ -56,10 +70,7 @@ function Item(){
             <div className="item_description">
                 <h3>Sold by Seller: {ownerName}</h3>
                 <h3>Price: CA${item.price}</h3>
-                <button>
-                    Add to Cart
-                </button>
-                <button>
+                <button onClick={() => buynowclick()}>
                     Buy Now
                 </button>
             </div>

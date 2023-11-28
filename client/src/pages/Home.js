@@ -1,12 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useAuth from "../authentication/useAuth"
 import "../css/Home.css";
 
 function Home () {
 
-    const location = useLocation();
     const auth = useAuth();
     let navigate = useNavigate();
     const [allImages, setAllImages] = useState();
@@ -58,7 +57,6 @@ function Home () {
                                 <h3>CA${data.price}</h3>
                             </div>
                         </div>
-
                     )
                 })}
             </div>
