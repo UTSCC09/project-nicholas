@@ -21,6 +21,16 @@ router.get("/:id", async (req, res) => {
     }
 })
 
+router.get("/user/:id", async (req, res) => {
+    const id = req.params.id;
+    try{
+        const items = await Item.find({ownerId: id})
+        res.json(items);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+})
+
 router.post("/", async (req, res) => {
     const { name, price, ownerId, size, file } = req.body;
 

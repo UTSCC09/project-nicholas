@@ -5,10 +5,19 @@ const boughtItemSchema = new mongoose.Schema(
         itemname: {
             type: String,
             required: true,
-            unique: true
         },
 
         price: {
+            type: Number,
+            required: true
+        },
+
+        tax: {
+            type: Number,
+            required: true
+        },
+
+        paid: {
             type: Number,
             required: true
         },

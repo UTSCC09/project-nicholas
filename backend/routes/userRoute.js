@@ -54,8 +54,8 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email: email });
-
-    if (user && compare(password, user.password)){
+    
+    if (user && await compare(password, user.password)){
         dotenv.config();
         const token = jwt.sign(user.toJSON(), process.env.MY_SECRET, { expiresIn: "1d" });
         res.cookie('jwt', token, {httpOnly: true, maxAge: 3*24*60*60*1000})

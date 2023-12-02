@@ -24,6 +24,9 @@ function Login() {
         e.preventDefault();
         if(!validateInput()){
             toast.error("Please enter a valid email and password");
+            setEmail("");
+            setPassword("");
+            document.getElementById("login_form").reset();
             return;
         }
         try{
@@ -40,6 +43,7 @@ function Login() {
                 if(res._id == null){
                     setEmail("");
                     setPassword("");
+                    document.getElementById("login_form").reset();
                     toast.error("Wrong email or password. Please try again");
                 } else {
                     setEmail("");
@@ -54,7 +58,9 @@ function Login() {
                 }
             })
         } catch (res){
-            console.log(res.message);
+            setEmail("");
+            setPassword("");
+            document.getElementById("login_form").reset();
             toast.error("Wrong email or password. Please try again");
         }
     }
@@ -63,7 +69,7 @@ function Login() {
         <div className="login">
             <h1>Login</h1>
 
-            <form>
+            <form id="login_form">
                 <div className="txt_field">
                     <input 
                         type="email" 

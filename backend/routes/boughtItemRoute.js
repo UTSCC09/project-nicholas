@@ -4,13 +4,15 @@ const BoughtItem = require("../models/boughtItemModel");
 
 router.post("/", async (req, res) => {
 
-    const { itemname, price, size, buyerId, file } = req.body;
+    const { itemname, price, tax, paid, size, buyerId, file } = req.body;
     const { firstName, lastName, address, postal, country, city, email } = req.body;
     const { cardName, cardNumber, cardCVV, cardMonth, cardYear } = req.body; 
 
     const boughtItem = new BoughtItem({
         itemname: itemname,
         price: price,
+        tax: tax,
+        paid: paid,
         size: size,
         buyerId: buyerId,
         file: file,
@@ -29,16 +31,26 @@ router.post("/", async (req, res) => {
     });
     try{
         const newBoughtItem = await boughtItem.save();
-        res.status(201)
+        res.status(201).json({_id: newBoughtItem._id})
     } catch (err) {
         res.status(500).json({message: err.message});
+    }
+})
+
+router.get("/:id", async (req, res) => {
+    const id = req.params.id;
+    try{
+        const boughtItem = await BoughtItem.find({_id: id});
+        res.json(boughtItem);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
     }
 })
 
 router.get("/user/:id", async (req, res) => {
     const id = req.params.id;
     try{
-        const boughtitems = await BoughtItem.find({buyerId: id})
+        const boughtitems = await BoughtItem.find({buyerId: id});
         res.json(boughtitems);
     } catch (err) {
         res.status(500).json({ message: err.message });
