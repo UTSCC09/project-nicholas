@@ -1,21 +1,23 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const dotenv = require("dotenv");
 
 const PORT = 3001;
 
 const userRoute = require("./routes/userRoute");
+const itemRoute = require("./routes/itemRoute");
+const boughtItemRoute = require("./routes/boughtItemRoute");
 
 const app = express();
 
-app.use(express.json());
 app.use(cors());
-
-const db_uri = "mongodb+srv://nicholas:nicholas123@cluster0.jk2vgyt.mongodb.net/?retryWrites=true&w=majority";
+app.use(express.json({limit: '50mb'}));
 
 async function connect() {
     try {
-        await mongoose.connect(db_uri);
+        dotenv.config();
+        await mongoose.connect(process.env.DB_URI);
         console.log("Connected to MongoDB");
     } catch (error) {
         console.error(error);
@@ -24,6 +26,8 @@ async function connect() {
 connect();
 
 app.use("/api/users", userRoute);
+app.use("/api/items", itemRoute);
+app.use("/api/boughtitems", boughtItemRoute);
 
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);

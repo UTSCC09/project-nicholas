@@ -15,6 +15,16 @@ router.get("/", async (req, res) => {
     }
 });
 
+router.get("/:id", async (req, res) => {
+    const id = req.params.id;
+    try {
+        const users = await User.find({_id: id});
+        res.json(users);
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
+});
+
 router.post("/register", async (req, res) => {
     const { firstname, lastname, email, password } = req.body;
 
@@ -37,15 +47,15 @@ router.post("/register", async (req, res) => {
             token: token
         });
     } catch (err) {
-        res.status(400).json({ message: err.message });
+        res.status(500).json({ message: err.message });
     }
 });
 
 router.post("/login", async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email: email });
-
-    if (user && compare(password, user.password)){
+    
+    if (user && await compare(password, user.password)){
         dotenv.config();
         const token = jwt.sign(user.toJSON(), process.env.MY_SECRET, { expiresIn: "1d" });
         res.cookie('jwt', token, {httpOnly: true, maxAge: 3*24*60*60*1000})

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import useAuth from '../authentication/useAuth';
@@ -13,8 +13,22 @@ function Login() {
 
     const { setAuth } = useAuth();
 
+    function validateInput(){
+        if(!email || !password){
+            return false;
+        }
+        return true;
+    }
+
     async function submit(e) {
         e.preventDefault();
+        if(!validateInput()){
+            toast.error("Please enter a valid email and password");
+            setEmail("");
+            setPassword("");
+            document.getElementById("login_form").reset();
+            return;
+        }
         try{
             await fetch(`${process.env.REACT_APP_PUBLIC_BACKEND}/api/users/login`, {
                 method: "POST",
@@ -29,7 +43,8 @@ function Login() {
                 if(res._id == null){
                     setEmail("");
                     setPassword("");
-                    toast.error("Login Failed");
+                    document.getElementById("login_form").reset();
+                    toast.error("Wrong email or password. Please try again");
                 } else {
                     setEmail("");
                     setPassword("");
@@ -43,8 +58,10 @@ function Login() {
                 }
             })
         } catch (res){
-            console.log(res.message);
-            toast.error("An unexpected error has occured. Try again");
+            setEmail("");
+            setPassword("");
+            document.getElementById("login_form").reset();
+            toast.error("Wrong email or password. Please try again");
         }
     }
 
@@ -52,12 +69,23 @@ function Login() {
         <div className="login">
             <h1>Login</h1>
 
-            <form>
+            <form id="login_form">
                 <div className="txt_field">
-                    <input type="email" onChange={(e)=>{setEmail(e.target.value)}} placeholder="Email" required className="userinputs"/>
+                    <input 
+                        type="email" 
+                        onChange={(e)=>{setEmail(e.target.value)}} 
+                        placeholder="Email" 
+                        value={email}
+                        required 
+                        className="userinputs"/>
                 </div>
                 <div className="txt_field">
-                    <input type="password" onChange={(e)=>{setPassword(e.target.value)}} placeholder="Password" required className="userinputs"/>
+                    <input type="password" 
+                    onChange={(e)=>{setPassword(e.target.value)}} 
+                    placeholder="Password" 
+                    required 
+                    value={password}
+                    className="userinputs"/>
                 </div>
                 
                 <input type="submit" onClick={submit} />

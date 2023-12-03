@@ -1,16 +1,39 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import useAuth from "../authentication/useAuth"
 import "../css/Home.css";
 
 function Home () {
 
-    const location = useLocation();
     const auth = useAuth();
     let navigate = useNavigate();
+    const [allImages, setAllImages] = useState();
 
-    const imageClick = () => {
-        navigate("/item");
+    const imageClick = (id) => {
+        navigate('/item/'+id);
+    }
+
+    useEffect(() => {
+        getImages();
+        
+    }, [])
+
+    const getImages = async () => {
+        try{
+            await fetch(`${process.env.REACT_APP_PUBLIC_BACKEND}/api/items/`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            }).then(res => res.json())
+            .then((res) => {
+                console.log(res);
+                setAllImages(res);
+            })
+        } catch (err){
+
+        }
     }
 
     return (
@@ -27,41 +50,17 @@ function Home () {
                 <h1>Marketplace</h1>
             </div>
             <div className = "items">
-                <div className = "item">
-                    <img src={require("../images/nike-panda-dunks.jpg")} onClick={imageClick}/>
-                    <div className = "item_information">
-                        <h4>Nike Dunks Panda</h4>
-                        <h3>CA$150</h3>
-                    </div>
-                </div>
-                <div className = "item">
-                    <img src={require("../images/luka-2.jpg")} onClick={imageClick}/>
-                    <div className = "item_information">
-                        <h4>Luka 2 Basketball Shoes</h4>
-                        <h3>CA$180</h3>
-                    </div>
-                </div>
-                <div className = "item">
-                    <img src={require("../images/ja-morant-1.jpg")} onClick={imageClick}/>
-                    <div className = "item_information">
-                        <h4>Ja Morant 1 Basketball Shoes</h4>
-                        <h3>CA$160</h3>
-                    </div>
-                </div>
-                <div className = "item">
-                    <img src={require("../images/air-force-one-supreme.jpg")} onClick={imageClick}/>
-                    <div className = "item_information">
-                        <h4>Air Force One Supreme</h4>
-                        <h3>CA$200</h3>
-                    </div>
-                </div>
-                <div className = "item">
-                    <img src={require("../images/sabrina-1.jpg")} onClick={imageClick}/>
-                    <div className = "item_information">
-                        <h4>Sabrina 1 Basketball Shoes</h4>
-                        <h3>CA$220</h3>
-                    </div>
-                </div>
+                {allImages && allImages.map(data => {
+                    return(
+                        <div className = "item">
+                            <img src={data.file} onClick={(e)=> imageClick(data._id)}/>
+                            <div className = "item_information">
+                                <h4>{data.name}</h4>
+                                <h3>CA${data.price}</h3>
+                            </div>
+                        </div>
+                    )
+                })}
             </div>
         </div>
     );
