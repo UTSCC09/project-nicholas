@@ -56,6 +56,25 @@ function BuyNow() {
         return true;
     }
 
+    async function deleteItem(id) {
+        try{
+            await fetch(`${process.env.REACT_APP_PUBLIC_BACKEND}/api/items/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            }).then(res => res.json())
+            .then(res => {
+                if(res._id){
+                    return true;
+                }
+                return false;
+            })
+        } catch (err) {
+
+        }
+    }
+
     async function submit(e) {
         e.preventDefault();
         if(!validateInput()){
@@ -63,10 +82,6 @@ function BuyNow() {
             return;
         }
         try{
-            console.log(item);
-            console.log(firstName, lastName, address, postal, country, city, email);
-            console.log(cardName, cardNumber, cardCVV, cardMonth, cardYear)
-            console.log(auth.auth._id);
             await fetch(`${process.env.REACT_APP_PUBLIC_BACKEND}/api/boughtitems/`, {
                 method: "POST",
                 body: JSON.stringify({
@@ -76,6 +91,7 @@ function BuyNow() {
                     paid: item.price * 1.13 + 5,
                     size: item.size,
                     buyerId: auth.auth._id,
+                    sellerId: item.ownerId,
                     file: item.file,
                     firstName: firstName,
                     lastName: lastName,
@@ -123,7 +139,8 @@ function BuyNow() {
                     setCardCVV();
                     setCardMonth();
                     setCardYear();
-                    toast.success("Purchase Successful!")
+                    toast.success("Purchase Successful!");
+                    deleteItem(item._id);
                     navigate('/receipt/'+ res._id);
                 }
             })

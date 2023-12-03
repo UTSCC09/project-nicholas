@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
 const boughtItemSchema = new mongoose.Schema(
-    {
+    {   
         itemname: {
             type: String,
-            required: true,
+            required: true
         },
 
         price: {
@@ -28,6 +28,11 @@ const boughtItemSchema = new mongoose.Schema(
         },
 
         buyerId: {
+            type: String,
+            required: true
+        },
+
+        sellerId: {
             type: String,
             required: true
         },

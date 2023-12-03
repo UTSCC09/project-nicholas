@@ -20,7 +20,6 @@
 }
 
 .contact_item {
-    padding: 30px 30px;
     background: #eaeaea;
     font-size: 24px;
     align-items: center;
@@ -30,13 +29,22 @@
 }
 
 .contact_item textarea {
+    background: #eaeaea;
     font-size: 16px;
     width: 300px;
     height: 150px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    color: black;
 }
 
-.contact_item input {
+.contact_item input[type = "email"] {
     font-size: 16px;
+    padding: 10px;
+    background: #eaeaea;
+    width: 300px;
+    color: black;
 }
 
 .contactus_div h1{

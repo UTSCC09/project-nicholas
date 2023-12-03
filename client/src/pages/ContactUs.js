@@ -1,6 +1,16 @@
 import "../css/ContactUs.css"
+import  {useNavigate } from "react-router-dom"
+import { toast } from "react-toastify";
 
 function ContactUs(){
+
+    const navigate = useNavigate();
+
+    const submit = () => {
+        toast.success("Thank you for your suggestions/concerns. We will contact you through the email shortly.")
+        navigate("/");
+    }
+
     return(
         <div className="contactus_div">
             <h1>
@@ -21,6 +31,7 @@ function ContactUs(){
                 </div>
                 <input
                     type="submit"
+                    onClick={submit}
                 />
             </form>
         </div>

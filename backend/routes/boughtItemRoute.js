@@ -4,7 +4,7 @@ const BoughtItem = require("../models/boughtItemModel");
 
 router.post("/", async (req, res) => {
 
-    const { itemname, price, tax, paid, size, buyerId, file } = req.body;
+    const { itemname, price, tax, paid, size, buyerId, file, sellerId } = req.body;
     const { firstName, lastName, address, postal, country, city, email } = req.body;
     const { cardName, cardNumber, cardCVV, cardMonth, cardYear } = req.body; 
 
@@ -15,6 +15,7 @@ router.post("/", async (req, res) => {
         paid: paid,
         size: size,
         buyerId: buyerId,
+        sellerId: sellerId,
         file: file,
         firstName: firstName,
         lastName: lastName,
@@ -34,6 +35,7 @@ router.post("/", async (req, res) => {
         res.status(201).json({_id: newBoughtItem._id})
     } catch (err) {
         res.status(500).json({message: err.message});
+        console.log(err.message);
     }
 })
 
@@ -56,5 +58,15 @@ router.get("/user/:id", async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 });
+
+router.get("/user/sold/:id", async (req, res) => {
+    const id = req.params.id;
+    try {
+        const solditems = await BoughtItem.find({sellerId: id});
+        res.json(solditems);
+    } catch (err){
+        res.status(500).json({ message: err.message });
+    }
+})
 
 module.exports = router;

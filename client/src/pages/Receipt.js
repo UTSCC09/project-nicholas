@@ -24,7 +24,6 @@ function Receipt(){
             .then((res) => {
                 if(res[0]){
                     setBoughtItem(res[0]);
-                    console.log(boughtItem.cardNumber)
                 }
             })
         } catch (err){
@@ -39,6 +38,7 @@ function Receipt(){
                     <div>
                         <h2>Your order is confirmed</h2>
                         <h3>You'll receive an email with your order number shortly</h3>
+                        <h3>Purchase Date: {new Date(boughtItem.createdAt).toDateString()}</h3>
                     </div>
                     <div className="receipt_customerinfo">
                         <h2 className="custinfo">Customer information</h2>
@@ -57,7 +57,7 @@ function Receipt(){
                         </div>
                         <div className="paymentinfo">
                             <h3>Payment method</h3>
-                            <h4>Ending with {boughtItem.cardNumber} 
+                            <h4>Ending with {new String(boughtItem.cardNumber).slice(-4)} 
                                 - CA${(Math.round(boughtItem.paid * 100) / 100).toFixed(2)}</h4>
                         </div>
                     </div>

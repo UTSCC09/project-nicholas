@@ -16,6 +16,7 @@ function Home () {
 
     useEffect(() => {
         getImages();
+        
     }, [])
 
     const getImages = async () => {
@@ -27,6 +28,7 @@ function Home () {
                 }
             }).then(res => res.json())
             .then((res) => {
+                console.log(res);
                 setAllImages(res);
             })
         } catch (err){
