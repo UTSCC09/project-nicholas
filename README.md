@@ -29,7 +29,7 @@ As for the overall code design, the application followed a Client-Server model, 
 
 **Task:** Explain how you have deployed your application. 
 
-I seperated the backend and the frontend of the application into two different repositories, and deployed the backend on Render as a web service and the frontend on Render as a static webpage. I changed the backend URL from localhost to the deployed backend on Render so the frontend application was able to access and communicate with the backend. Also, I added the environmental variables for the backend and frontend such as the database URI and such into the backend and frontend themselves through Render, as the .env is not published on the repository.
+I seperated the backend and the frontend of the application into two different repositories, and deployed the backend on Render as a web service and the frontend on Render as a static webpage. I changed the backend URL from localhost to the deployed backend on Render so the frontend application was able to access and communicate with the backend. Also, I added the environmental variables for the backend and frontend such as the database URI and such into the backend and frontend themselves through Render, as the .env is not published on the repository. I attempted the deploy the application using Google Cloud, but it was not working after many attempts and I was not able to figure out why. A disadvantage of deploying using Render is that after a period of inactivity, the backend starts to slow down and takes a longer time for it to load, and so getting the website to work might take a while
 
 ## Challenges
 
