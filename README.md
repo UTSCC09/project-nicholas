@@ -21,6 +21,7 @@ The app is a shoe reselling website where buyers and sellers of hyped up shoes c
 ## Development
 
 **Task:** Leaving deployment aside, explain how the app is built. Please describe the overall code design and be specific about the programming languages, framework, libraries and third-party api that you have used. 
+
 The app is a full stack MERN application, meaning it was coded using MongoDB, ExpressJS, React.js and Node.js. The programming languages used in this app were Javascript, HTMl and CSS. The framework used in this project is the ExpressJS framework, a Node.js framework used to build the backend of this app. The library used in this project is the React library, used to code the frontend client of the webpage.
 As for the overall code design, the application followed a Client-Server model, where the React frontend acted as the client that sends requests to the Express server, which then interacted with the MongoDB database. The Express backend acted as a RESTful API to serve data to the frontend. Also, the React frontend took advantage of components to produce reusable structures that led to an efficient webpage. Also, JWT was used in order to ensure secure user authentication and authorization checks.
 
@@ -41,9 +42,11 @@ I seperated the backend and the frontend of the application into two different r
 ## Contributions
 
 **Task:** Describe the contribution of each team member to the project. Please provide the full name of each team member (but no student number). 
+
 Lim Lei - All work and code were done by me.
 
 # One more thing? 
 
 **Task:** Any additional comment you want to share with the course staff? 
+
 It was very difficult to meet all the goals from the project proposal and build the high level webpage that I had hoped to build as I had to work on the group project purely by myself. My other group member was not responsive at all throughout the whole project phase and did not contribute anything to the project. All coding commits and work were done by me.
