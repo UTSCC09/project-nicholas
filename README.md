@@ -10,9 +10,13 @@ https://nicholas-wrqh.onrender.com
 
 **Task:** Provide the link to your youtube video. Please make sure the link works. 
 
+https://youtu.be/UAk3R0kSlQg
+
 ## Project Description
 
 **Task:** Provide a detailed description of your app
+
+The app is a shoe reselling website where buyers and sellers of hyped up shoes can come together and buy/sell brand new shoes. Sellers are able to create accounts and list their shoes onto the marketplace for anyone to buy, and buyers are able to make accounts to buy shoes.
 
 ## Development
 
@@ -21,6 +25,8 @@ https://nicholas-wrqh.onrender.com
 ## Deployment
 
 **Task:** Explain how you have deployed your application. 
+
+I seperated the backend and the frontend of the application into two different repositories, and deployed the backend on Render as a web service and the frontend on Render as a static webpage. I changed the backend URL from localhost to the deployed backend on Render so the frontend application was able to use the backend.
 
 ## Challenges
 
