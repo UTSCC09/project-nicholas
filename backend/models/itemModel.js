@@ -25,7 +25,7 @@ const itemSchema = new mongoose.Schema(
 
         file: {
             type: String,
-            required: true
+            required: tru
         }
 
     },
